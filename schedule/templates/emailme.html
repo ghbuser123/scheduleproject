@@ -1,0 +1,67 @@
+<!--ベーステンプレートの適用-->
+{% extends 'base.html' %}
+<!--ヘッダー情報のタイトルを設定-->
+{% block title %}スケジュール管理-Email me{% endblock %}
+
+  {% block contents %}
+  <main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+
+                <br>
+ 
+                <hr>
+                <!--本文-->
+                <h3>サイトの作成者に問い合わせますか？</h3>
+                <p>以下のフォームにメッセージをご記入の上、送信してください。</p>
+                
+
+                <!--送信成功メッセージを表示-->
+                <!--messagesオブジェクトが存在している場合-->
+                {% if messages %}
+                <ul class="list-unstyled" style="list-style: none;">
+                    <!--messagesを取り出す-->
+                    {% for message in messages %}
+                    <!--message.tagsが存在する場合はcssのクラスを設定-->
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                        <!--メッセージを出力-->
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                <!--フォームを表示-->
+                <div class="my-5">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!--formで定義されているフィールドの値を取り出す-->
+                        {% for field in form %}
+                        <div class="form-floating">
+                            <div class="form-group floating-label-form-group controls">
+
+                                <!--<label>生成-->
+                                {{ field.label_tag }}
+                                <!--フィールドの設定値を<input>で出力-->
+                                {{ field }}
+                                <p class="help-block text-danger"></p>
+
+                            </div>
+                        </div>    
+                        {% endfor %}
+                        <br>
+                        <!--送信用ボタン-->
+                        <button type="submit" class="btn btn-dark" id="sendMessageButton">送信する</button>
+                    </form>
+                </div>
+                <br>
+                <!--トップページへのリンク-->
+                <a href="{% url 'schedule:index' %}" class="text-dark">スケジュール管理</a>
+                <hr>
+            </div>
+        </div>
+    </div>
+  </main>
+  {% endblock %}

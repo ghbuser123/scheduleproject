@@ -1,0 +1,20 @@
+<!--イベント追加完了ページ-->
+<!--ベーステンプレートの適用-->
+{% extends 'base.html' %}
+<!--ヘッダー情報のタイトルを設定-->
+{% block title %}スケジュール管理-新規イベント追加完了{% endblock %}
+
+  {% block contents %}
+
+  <br><br>
+  <div class="container">
+
+    <div class="row">
+        <div class="col offset-2">
+            <h4>新規イベントを追加しました</h4>
+        </div>   
+    </div>
+    <!--トップページへのリンク-->
+    <a href="{% url 'schedule:index' %}" class="text-dark">スケジュール管理</a>
+  </div>
+  {% endblock %}    

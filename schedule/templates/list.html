@@ -1,0 +1,46 @@
+{% load static %}
+<div class="py-5">
+  <div class="container text-center">
+    <div class="col offset-0">
+ 
+      <!--なぜか消すとcss効かなくなる-->
+      <link rel="stylesheet" href={% static "css/list.css" %}>
+          
+        <!--テーブル配置-->
+        <div class="card">
+        <div class="card-heder">イベント一覧</div>
+        <div class="col">
+          <table class="table table-striped table-responsive">
+            <thead>
+              <!--列タイトル(header行)-->
+              <tr>
+                <th scope="col" class="text-center" style="width: 100px;">ユーザー</th>
+                <th scope="col" class="text-center" style="width: 100px;">カテゴリ</th>
+                <th scope="col" class="text-center" style="width: 100px;">タイトル</th>
+                <th scope="col" class="text-center" style="width: 100px;">開始日時</th>
+                <th scope="col" class="text-center" style="width: 100px;">終了日時</th>
+                <th scope="col" class="text-center" style="width: 200px;">メモ</th>
+              </tr> 
+            </thead>
+            <!--行とその値-->
+            <!--レコードが格納されたobject_listからレコードを1行ずつrecordに取り出す-->
+            
+            <tbody>
+              {% for record in object_list %}
+              <tr>
+                <th scope="row" style="width: 100px;">{{ record.user }}</th>
+                <td class="text-center" style="width: 100px;">{{ record.category }}</td>
+                <td class="text-center" style="width: 100px;">{{ record.title }}</td>
+                <td class="text-center" style="width: 100px;">{{ record.start_date }}</td>
+                <td class="text-center" style="width: 100px;">{{ record.end_date }}</td>
+                <td class="text-center" style="width: 200px;">{{ record.memo }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            
+          </table>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

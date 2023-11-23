@@ -1,0 +1,122 @@
+<!--staticタグをダウンロード-->
+{% load static %}
+<!doctype html>
+<html lang="ja" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <!--スマホの画面に合わせた画面サイズ-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.112.5">
+    <!--タイトル-->
+    <title>スケジュール管理-ログイン</title>
+
+    <!--Bootstrap core css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!--staticでfavicon.icoのURL作成-->
+    <link rel="icon" type="image/x-icon" href={% static 'assets/favicon.ico' %} />
+    
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href={% static "css/sign-in.css" %}>
+
+    <style>
+      .hover2:hover{
+        opacity: .8;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body class="text-center" style="background: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);">
+    <main class="form-signin w-100 m-auto">
+
+      <!--ユーザー名とパスワードが一致しない場合-->
+      {% if form.errors %}
+        <p style="color: red;">ユーザー名とパスワードが一致しません。</p>
+      {% endif %}  
+
+      <!--ログインフォーム配置-->
+      <div class="container" 
+      style="width: 450px;
+            height: 500px;
+            margin: auto;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px gray;">
+      <form method="post">
+        {% csrf_token %}
+
+        <h1 class="h1 mt-5 mb-3 fw-light" 
+        style="
+              color: black;">アカウントにログイン</h1>
+
+        <!--usernameラベル（visually-hiddenで非表示）-->
+        <label for="Username" class="visually-hidden">Username</label>
+        <input type="text" 
+              name="username" 
+              id="id_username" 
+              maxlength="150" 
+              autocapitalize="none"
+              autocomplete="username"
+              class="form-control"
+              placeholder="ユーザー名"
+              required autofocus
+              style="border-radius: 10px 10px 10px 10px;
+                     padding: 10px;
+                     width: 300px;
+                     margin: auto;
+                     margin-top: 40px;
+                     margin-bottom: 20px;
+                     display: block">
+
+        <!--passwordラベル（visually-hiddenで非表示）-->
+        <label for="Password" class="visually-hidden">Password</label>
+        <input type="password"
+              name="password"
+              id="id_password"
+              autocomplete="current-password"
+              class="form-control"
+              placeholder="パスワード"
+              required autofocus
+              style="border-radius: 10px 10px 10px 10px;
+                     padding: 10px;
+                     width: 300px;
+                     margin: auto;
+                     margin-bottom: 50px;
+                     display: block">
+
+        <!--横並びにする-->      
+        <div style="display: grid;" >
+
+        <!--ログインボタン-->
+        <input class="w-30 btn btn-lg btn-dark"
+         type="submit"
+         style="grid-row: 1;
+                grid-column: 2;
+                margin-right: 20%;"
+                
+         value="ログイン">
+
+        <!--パスワード変更-->
+        <p style="justify-self: end;
+                  margin-right: 15%;">
+        <a href="{% url 'password_reset' %}" class="text-dark hover2">パスワードを忘れた場合</a></p>
+        
+        </div>
+
+        <!--リダイレクト先URL-->
+        <input type="hidden"
+        name="next"
+        value="{% url 'schedule:index' %}">
+
+      </form>
+      </div>
+    </main>
+  </body>
+</html>

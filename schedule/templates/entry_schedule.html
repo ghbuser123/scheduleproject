@@ -1,0 +1,44 @@
+<!--イベント追加ページ-->
+<!--ベーステンプレートの適用-->
+{% extends 'base.html' %}
+<!--ヘッダー情報のタイトルを設定-->
+{% block title %}スケジュール管理-新規イベント追加{% endblock %}
+
+  {% block contents %}
+
+  <br>
+  <div class="container">
+    <div class="row">
+        <div class="col offset-2">
+            <form method="post" enctype="multipart/form-data">
+                <hr>
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <th>カテゴリー</th>
+                        <td>{{ form.category }}</td>
+                    </tr>
+                    <tr>
+                        <th>タイトル</th>
+                        <td>{{ form.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>開始日時</th>
+                        <td>{{ form.start_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>終了日時</th>
+                        <td>{{ form.end_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>メモ</th>
+                        <td>{{ form.memo }}</td>
+                    </tr>
+                </table>
+                <hr>
+                <button type="submit" class="btn btn-dark" name="event">イベントを追加する</button>
+            </form>
+        </div>
+    </div>
+  </div>
+  {% endblock %}

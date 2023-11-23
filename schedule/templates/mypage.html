@@ -1,0 +1,11 @@
+<!--ベーステンプレートの適用-->
+{% extends 'base.html' %}
+<!--ヘッダー情報のタイトルを設定-->
+{% block title %}スケジュール管理-マイページ{% endblock %}
+
+  {% block contents %}
+
+  <!--ここにhtml組み込む-->
+  {% include 'list.html' %}
+
+  {% endblock %}

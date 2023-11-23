@@ -1,0 +1,22 @@
+<!--ベーステンプレートの適用-->
+{% extends 'base.html' %}
+<!--ヘッダー情報のタイトルを設定-->
+{% block title %}スケジュール管理-ログアウト{% endblock %}
+
+  {% block contents %}
+
+  <div class="container">
+    <div class="row">
+        <div class="col offset-4 py-4">
+
+          <style>
+            .hover2:hover{
+            opacity: .8;
+            cursor: pointer;
+            }
+          </style>
+
+            <h3>ログアウトしました</h3>
+            <!--トップページのリンクテキスト-->
+            <p><a href="{% url 'schedule:index' %}" class="text-dark hover2">サインアップページへ</a></p>
+  {% endblock %}          

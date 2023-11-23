@@ -1,0 +1,19 @@
+<!--ベーステンプレートの適用-->
+{% extends 'base.html' %}
+<!--ヘッダー情報のタイトルを設定-->
+{% block title %}スケジュール管理-サインアップ完了{% endblock %}
+
+  {% block contents %}
+
+  <hr>
+  <div class="container">
+    <div class="row">
+        <div class="col offset-4 py-4">
+            <h3>登録が完了しました</h3>
+            <!--ログインページのリンクテキスト-->
+            <p><a href="{% url 'accounts:login' %}" class="text-dark">ログインはこちら</a></p>
+        </div>
+    </div>
+  </div> 
+  
+  {% endblock %}

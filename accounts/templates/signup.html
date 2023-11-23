@@ -1,0 +1,58 @@
+<!--ベーステンプレートの適用-->
+{% extends 'base.html' %}
+<!--ヘッダー情報のタイトルを設定-->
+{% block title %}スケジュール管理-サインアップ{% endblock %}
+
+  {% block contents %}
+
+  <!--css-->
+  <style>
+    /*マウスオーバー*/
+    .hover2:hover{
+      opacity: .8;
+      cursor: pointer;
+    }
+  </style>
+
+  <hr>
+  <div class="container">
+    <div class="row">
+        <div class="col offset-2">
+            <h3>アカウント新規登録</h3>
+
+            <!--サインアップのフォーム配置-->
+            <form method="post">
+                {% csrf_token %}
+                <!--フォームからフィールドを取り出す-->
+                {% for field in form %}
+                <p>
+                    <!--ラベル出力-->
+                    {{ field.label_tag }}<br>
+                    <!--inputタグ出力-->
+                    {{ field }}
+                    <!--help_text出力-->
+                    {% if field.help_text %}
+                        <small style="color: grey;">{{ field.help_text }}</small>
+                    {% endif %}
+                    <!--エラー発生時のテキストerrors出力-->
+                    {% for error in field.errors %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endfor %}    
+                </p>
+                {% endfor %}
+                <p style="color: red;">
+                    ※Gmailアドレスの登録をお願いします。パスワード変更時に必要になります。
+                </p>
+
+                <!--sign upボタン出力-->
+                <input type="submit" class="btn btn-dark" value="ログイン">
+            </form>
+
+            <!--トップページのリンクテキスト-->
+            <br>
+            <p><a href="{% url 'schedule:index' %}" class="text-dark hover2">
+                登録をやめてサインアップページに戻る</a></p>
+        </div>
+    </div>
+  </div>
+  {% endblock %}
