@@ -5,11 +5,18 @@
  
       <!--なぜか消すとcss効かなくなる-->
       <link rel="stylesheet" href={% static "css/list.css" %}>
+
+      <style>
+        .table-scroll{
+          overflow: scroll;
+        }
+      </style>
           
         <!--テーブル配置-->
         <div class="card">
         <div class="card-heder">イベント一覧</div>
         <div class="col">
+        <div class="table-scroll">  
           <table class="table table-striped table-responsive">
             <thead>
               <!--列タイトル(header行)-->
@@ -24,7 +31,6 @@
             </thead>
             <!--行とその値-->
             <!--レコードが格納されたobject_listからレコードを1行ずつrecordに取り出す-->
-            
             <tbody>
               {% for record in object_list %}
               <tr>
@@ -37,10 +43,10 @@
               </tr>
               {% endfor %}
             </tbody>
-            
           </table>
         </div>
         </div>
+        </div>  
     </div>
   </div>
 </div>
